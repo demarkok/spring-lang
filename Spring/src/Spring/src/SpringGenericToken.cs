@@ -38,6 +38,11 @@ namespace JetBrains.ReSharper.Plugins.Spring
             return _text;
         }
 
+        public override string ToString()
+        {
+            return "SpringGenericToken(type={0})(string={1})".FormatEx(_tokenType, _text);
+        }
+
         public override NodeType NodeType => _tokenType;
         public override PsiLanguageType Language => SpringLanguage.Instance;
         public TokenNodeType GetTokenType()

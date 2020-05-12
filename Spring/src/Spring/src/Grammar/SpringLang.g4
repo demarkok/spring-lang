@@ -81,7 +81,7 @@ caseListElement
 casePattern
     : WILDCARD
     | identifierDecl
-    | TAG (casePatternList)?
+    | TAG (LPAR casePatternList RPAR)?
     ;
 
 casePatternList
@@ -203,7 +203,7 @@ IDENT : ('a' .. 'z' | 'A' .. 'Z') ('a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_')*;
 
 DECIMAL : ('0' .. '9')+;
 
-TIC : '\'';
+TIC : '`';
 DOT : '.';
 COMMA : ',';
 WILDCARD : '_';
