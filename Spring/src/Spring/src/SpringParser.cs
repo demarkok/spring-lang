@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Antlr4.Runtime;
+using Antlr4.Runtime.Tree;
 using ICSharpCode.NRefactory.CSharp;
+using JetBrains.Application.PersistentMap;
 using JetBrains.Application.Settings;
+using JetBrains.Core;
 using JetBrains.DocumentModel;
 using JetBrains.Lifetimes;
 using JetBrains.ProjectModel;
@@ -20,7 +23,9 @@ using JetBrains.ReSharper.Psi.Files;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.ReSharper.Psi.TreeBuilder;
+using JetBrains.ReSharper.Refactorings.UseBaseType.Dependencies;
 using JetBrains.Text;
+using NodeType = JetBrains.ReSharper.Psi.ExtensionsAPI.Tree.NodeType;
 
 namespace JetBrains.ReSharper.Plugins.Spring
 {
@@ -38,16 +43,249 @@ namespace JetBrains.ReSharper.Plugins.Spring
             using (var def = Lifetime.Define())
             {
                 var builder = new PsiBuilder(myLexer, SpringFileNodeType.Instance, new TokenFactory(), def.Lifetime);
-                var fileMark = builder.Mark();
                 
-                // SpringLangLexer antlrLexer = new SpringLangLexer(new AntlrInputStream(myLexer.Buffer.GetText()));
-                // SpringLangParser antlrParser = new SpringLangParser(new CommonTokenStream(antlrLexer));
-                // antlrParser.program();
+                SpringLangLexer antlrLexer = new SpringLangLexer(new AntlrInputStream(myLexer.Buffer.GetText()));
+                SpringLangParser antlrParser = new SpringLangParser(new CommonTokenStream(antlrLexer));
+                
+                BuilderVisitor visitor = new BuilderVisitor(builder);
+                
+                visitor.Visit(antlrParser.program());
+                
+                // ParseBlock(builder);
 
-                builder.Done(fileMark, SpringFileNodeType.Instance, null);
                 var file = (IFile)builder.BuildTree();
+
+                var stringBuilder = new StringBuilder();
+                DebugUtil.DumpPsi(new StringWriter(stringBuilder), file);
+                stringBuilder.ToString();
+                
                 return file;
             }
+        }
+
+        private class BuilderVisitor : SpringLangBaseVisitor<Unit>
+        {
+
+            private PsiBuilder _psiBuilder;
+            public BuilderVisitor(PsiBuilder psiBuilder)
+            {
+                _psiBuilder = psiBuilder;
+            }
+
+            private int _enter(int lexeme) {
+               _psiBuilder.ResetCurrentLexeme(lexeme, lexeme);
+               return _psiBuilder.Mark();
+            }
+
+            private void _leave(int lexeme, int marker, NodeType nodeType)
+            {
+               _psiBuilder.ResetCurrentLexeme(lexeme, lexeme);
+               _psiBuilder.Done(marker, nodeType, null);
+            }
+
+            public override Unit VisitProgram(SpringLangParser.ProgramContext context)
+            {
+                var nodeType = SpringFileNodeType.Instance;
+                var marker = _enter(context.SourceInterval.a);
+                base.VisitChildren(context);
+                _leave(MaxTokenIndexConsumed, marker, nodeType);
+                return Unit.Instance;
+            }
+
+            private Unit _Visit(ParserRuleContext context)
+            {
+                var nodeType = SpringCompositeNodeType.FromAntlr(context.RuleIndex);
+                
+                if (nodeType is null)
+                {
+                    return base.VisitChildren(context);
+                }
+                
+                var interval = context.SourceInterval;
+                var marker = _enter(interval.a);
+                
+                base.VisitChildren(context);
+                _leave(interval.b + 1, marker, nodeType);
+                return Unit.Instance;
+            }
+
+            public override Unit VisitFunDef(SpringLangParser.FunDefContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitLocalVariables(SpringLangParser.LocalVariablesContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitLocalVariableList(SpringLangParser.LocalVariableListContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitIdentifierDecl(SpringLangParser.IdentifierDeclContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitFunctionParameterList(SpringLangParser.FunctionParameterListContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitBlock(SpringLangParser.BlockContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitBlockWithBraces(SpringLangParser.BlockWithBracesContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStatement(SpringLangParser.StatementContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtCall(SpringLangParser.StmtCallContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitLoopBlock(SpringLangParser.LoopBlockContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtFor(SpringLangParser.StmtForContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtWhile(SpringLangParser.StmtWhileContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtRepeat(SpringLangParser.StmtRepeatContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtCase(SpringLangParser.StmtCaseContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitCaseList(SpringLangParser.CaseListContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitCaseListElement(SpringLangParser.CaseListElementContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitCasePattern(SpringLangParser.CasePatternContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitCasePatternList(SpringLangParser.CasePatternListContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtIf(SpringLangParser.StmtIfContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitElifBranch(SpringLangParser.ElifBranchContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitElseBranch(SpringLangParser.ElseBranchContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtAssignment(SpringLangParser.StmtAssignmentContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitArrayIndex(SpringLangParser.ArrayIndexContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtReturn(SpringLangParser.StmtReturnContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitStmtSkip(SpringLangParser.StmtSkipContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitAtomExpression(SpringLangParser.AtomExpressionContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitExpression(SpringLangParser.ExpressionContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitFunctionCall(SpringLangParser.FunctionCallContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitExpressionList(SpringLangParser.ExpressionListContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitSExpr(SpringLangParser.SExprContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitArray(SpringLangParser.ArrayContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitArrayElementList(SpringLangParser.ArrayElementListContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitIdentifier(SpringLangParser.IdentifierContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitNumber(SpringLangParser.NumberContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitTerminal(ITerminalNode node)
+            {
+                MaxTokenIndexConsumed = Math.Max(node.Symbol.TokenIndex, MaxTokenIndexConsumed);
+                return base.VisitTerminal(node);
+            }
+
+            public int MaxTokenIndexConsumed { get; private set; }
         }
 
         private void ParseBlock(PsiBuilder builder)
@@ -55,19 +293,19 @@ namespace JetBrains.ReSharper.Plugins.Spring
             while (!builder.Eof())
             {
                 var tt = builder.GetTokenType();
-                if (tt == CSharpTokenType.LBRACE)
+                if (tt == SpringTokenType.DO)
                 {
                     var start = builder.Mark();
                     builder.AdvanceLexer();
                     ParseBlock(builder);
 
-                    if (builder.GetTokenType() != CSharpTokenType.RBRACE)
-                        builder.Error("Expected '}'");
+                    if (builder.GetTokenType() != SpringTokenType.OD)
+                        builder.Error("Expected 'OD'");
                     else
                         builder.AdvanceLexer();
                     builder.Done(start, SpringCompositeNodeType.BLOCK, null);
                 }
-                else if (tt == CSharpTokenType.RBRACE)
+                else if (tt == SpringTokenType.OD)
                     return;
                 else builder.AdvanceLexer();
                 
