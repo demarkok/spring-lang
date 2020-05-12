@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Antlr4.Runtime;
 using ICSharpCode.NRefactory.CSharp;
 using JetBrains.Application.Settings;
 using JetBrains.DocumentModel;
@@ -38,8 +39,10 @@ namespace JetBrains.ReSharper.Plugins.Spring
             {
                 var builder = new PsiBuilder(myLexer, SpringFileNodeType.Instance, new TokenFactory(), def.Lifetime);
                 var fileMark = builder.Mark();
-
-                ParseBlock(builder);
+                
+                // SpringLangLexer antlrLexer = new SpringLangLexer(new AntlrInputStream(myLexer.Buffer.GetText()));
+                // SpringLangParser antlrParser = new SpringLangParser(new CommonTokenStream(antlrLexer));
+                // antlrParser.program();
 
                 builder.Done(fileMark, SpringFileNodeType.Instance, null);
                 var file = (IFile)builder.BuildTree();
@@ -62,7 +65,6 @@ namespace JetBrains.ReSharper.Plugins.Spring
                         builder.Error("Expected '}'");
                     else
                         builder.AdvanceLexer();
-                    
                     builder.Done(start, SpringCompositeNodeType.BLOCK, null);
                 }
                 else if (tt == CSharpTokenType.RBRACE)

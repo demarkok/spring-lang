@@ -6,7 +6,7 @@ namespace JetBrains.ReSharper.Plugins.Spring
     using Text;
     public class SpringLexerWrapper : ILexer<int>
     {
-        private readonly SpringLexer _springLexer;
+        private readonly SpringLangLexer _springLexer;
         private IToken _token;
         private int _currentPosition;
 
@@ -14,7 +14,7 @@ namespace JetBrains.ReSharper.Plugins.Spring
         {
             Buffer = buffer;
             _currentPosition = 0;
-            _springLexer = new SpringLexer(new AntlrInputStream(Buffer.GetText()));
+            _springLexer = new SpringLangLexer(new AntlrInputStream(Buffer.GetText()));
         }
 
 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from /home/Ilya.Kaysin/Dropbox/AU/5/IDE/spring-lang/Spring/src/Spring/src/Grammar/Spring.g4 by ANTLR 4.8
+// Generated from /home/Ilya.Kaysin/Dropbox/AU/5/IDE/spring-lang/Spring/src/Spring/src/Grammar/SpringLang.g4 by ANTLR 4.8
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,16 +25,16 @@ using IToken = Antlr4.Runtime.IToken;
 using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This class provides an empty implementation of <see cref="ISpringVisitor{Result}"/>,
+/// This class provides an empty implementation of <see cref="ISpringLangVisitor{Result}"/>,
 /// which can be extended to create a visitor which only needs to handle a subset
 /// of the available methods.
 /// </summary>
 /// <typeparam name="Result">The return type of the visit operation.</typeparam>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.8")]
 [System.CLSCompliant(false)]
-public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, ISpringVisitor<Result> {
+public partial class SpringLangBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, ISpringLangVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.program"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.program"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -42,9 +42,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitProgram([NotNull] SpringParser.ProgramContext context) { return VisitChildren(context); }
+	public virtual Result VisitProgram([NotNull] SpringLangParser.ProgramContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.funDef"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.funDef"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -52,9 +52,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFunDef([NotNull] SpringParser.FunDefContext context) { return VisitChildren(context); }
+	public virtual Result VisitFunDef([NotNull] SpringLangParser.FunDefContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.localVariables"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.localVariables"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -62,9 +62,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLocalVariables([NotNull] SpringParser.LocalVariablesContext context) { return VisitChildren(context); }
+	public virtual Result VisitLocalVariables([NotNull] SpringLangParser.LocalVariablesContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.localVariableList"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.localVariableList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -72,9 +72,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLocalVariableList([NotNull] SpringParser.LocalVariableListContext context) { return VisitChildren(context); }
+	public virtual Result VisitLocalVariableList([NotNull] SpringLangParser.LocalVariableListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.functionParameterList"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.identifierDecl"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -82,9 +82,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFunctionParameterList([NotNull] SpringParser.FunctionParameterListContext context) { return VisitChildren(context); }
+	public virtual Result VisitIdentifierDecl([NotNull] SpringLangParser.IdentifierDeclContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.block"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.functionParameterList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -92,9 +92,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBlock([NotNull] SpringParser.BlockContext context) { return VisitChildren(context); }
+	public virtual Result VisitFunctionParameterList([NotNull] SpringLangParser.FunctionParameterListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.blockWithBraces"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.block"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -102,9 +102,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBlockWithBraces([NotNull] SpringParser.BlockWithBracesContext context) { return VisitChildren(context); }
+	public virtual Result VisitBlock([NotNull] SpringLangParser.BlockContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.statement"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.blockWithBraces"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -112,9 +112,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStatement([NotNull] SpringParser.StatementContext context) { return VisitChildren(context); }
+	public virtual Result VisitBlockWithBraces([NotNull] SpringLangParser.BlockWithBracesContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtCall"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.statement"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -122,9 +122,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtCall([NotNull] SpringParser.StmtCallContext context) { return VisitChildren(context); }
+	public virtual Result VisitStatement([NotNull] SpringLangParser.StatementContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.loopBlock"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtCall"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -132,9 +132,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLoopBlock([NotNull] SpringParser.LoopBlockContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtCall([NotNull] SpringLangParser.StmtCallContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtFor"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.loopBlock"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -142,9 +142,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtFor([NotNull] SpringParser.StmtForContext context) { return VisitChildren(context); }
+	public virtual Result VisitLoopBlock([NotNull] SpringLangParser.LoopBlockContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtWhile"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtFor"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -152,9 +152,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtWhile([NotNull] SpringParser.StmtWhileContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtFor([NotNull] SpringLangParser.StmtForContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtRepeat"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtWhile"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -162,9 +162,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtRepeat([NotNull] SpringParser.StmtRepeatContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtWhile([NotNull] SpringLangParser.StmtWhileContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtCase"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtRepeat"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -172,9 +172,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtCase([NotNull] SpringParser.StmtCaseContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtRepeat([NotNull] SpringLangParser.StmtRepeatContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.caseList"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtCase"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -182,9 +182,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCaseList([NotNull] SpringParser.CaseListContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtCase([NotNull] SpringLangParser.StmtCaseContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.caseListElement"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.caseList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -192,9 +192,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCaseListElement([NotNull] SpringParser.CaseListElementContext context) { return VisitChildren(context); }
+	public virtual Result VisitCaseList([NotNull] SpringLangParser.CaseListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.casePattern"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.caseListElement"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -202,9 +202,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCasePattern([NotNull] SpringParser.CasePatternContext context) { return VisitChildren(context); }
+	public virtual Result VisitCaseListElement([NotNull] SpringLangParser.CaseListElementContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.casePatternList"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.casePattern"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -212,9 +212,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCasePatternList([NotNull] SpringParser.CasePatternListContext context) { return VisitChildren(context); }
+	public virtual Result VisitCasePattern([NotNull] SpringLangParser.CasePatternContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtIf"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.casePatternList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -222,9 +222,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtIf([NotNull] SpringParser.StmtIfContext context) { return VisitChildren(context); }
+	public virtual Result VisitCasePatternList([NotNull] SpringLangParser.CasePatternListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.elifBranch"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtIf"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -232,9 +232,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitElifBranch([NotNull] SpringParser.ElifBranchContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtIf([NotNull] SpringLangParser.StmtIfContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.elseBranch"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.elifBranch"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -242,9 +242,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitElseBranch([NotNull] SpringParser.ElseBranchContext context) { return VisitChildren(context); }
+	public virtual Result VisitElifBranch([NotNull] SpringLangParser.ElifBranchContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtAssignment"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.elseBranch"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -252,9 +252,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtAssignment([NotNull] SpringParser.StmtAssignmentContext context) { return VisitChildren(context); }
+	public virtual Result VisitElseBranch([NotNull] SpringLangParser.ElseBranchContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.arrayIndex"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtAssignment"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -262,9 +262,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArrayIndex([NotNull] SpringParser.ArrayIndexContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtAssignment([NotNull] SpringLangParser.StmtAssignmentContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtReturn"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.arrayIndex"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -272,9 +272,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtReturn([NotNull] SpringParser.StmtReturnContext context) { return VisitChildren(context); }
+	public virtual Result VisitArrayIndex([NotNull] SpringLangParser.ArrayIndexContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.stmtSkip"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtReturn"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -282,9 +282,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStmtSkip([NotNull] SpringParser.StmtSkipContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtReturn([NotNull] SpringLangParser.StmtReturnContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.atomExpression"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.stmtSkip"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -292,9 +292,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAtomExpression([NotNull] SpringParser.AtomExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitStmtSkip([NotNull] SpringLangParser.StmtSkipContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.expression"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.atomExpression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -302,9 +302,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitExpression([NotNull] SpringParser.ExpressionContext context) { return VisitChildren(context); }
+	public virtual Result VisitAtomExpression([NotNull] SpringLangParser.AtomExpressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.functionCall"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.expression"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -312,9 +312,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFunctionCall([NotNull] SpringParser.FunctionCallContext context) { return VisitChildren(context); }
+	public virtual Result VisitExpression([NotNull] SpringLangParser.ExpressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.expressionList"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.functionCall"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -322,9 +322,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitExpressionList([NotNull] SpringParser.ExpressionListContext context) { return VisitChildren(context); }
+	public virtual Result VisitFunctionCall([NotNull] SpringLangParser.FunctionCallContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.sExpr"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.expressionList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -332,9 +332,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSExpr([NotNull] SpringParser.SExprContext context) { return VisitChildren(context); }
+	public virtual Result VisitExpressionList([NotNull] SpringLangParser.ExpressionListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.array"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.sExpr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -342,9 +342,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArray([NotNull] SpringParser.ArrayContext context) { return VisitChildren(context); }
+	public virtual Result VisitSExpr([NotNull] SpringLangParser.SExprContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.arrayElementList"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.array"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -352,9 +352,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitArrayElementList([NotNull] SpringParser.ArrayElementListContext context) { return VisitChildren(context); }
+	public virtual Result VisitArray([NotNull] SpringLangParser.ArrayContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.tag"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.arrayElementList"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -362,9 +362,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTag([NotNull] SpringParser.TagContext context) { return VisitChildren(context); }
+	public virtual Result VisitArrayElementList([NotNull] SpringLangParser.ArrayElementListContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.identifier"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.identifier"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -372,9 +372,9 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitIdentifier([NotNull] SpringParser.IdentifierContext context) { return VisitChildren(context); }
+	public virtual Result VisitIdentifier([NotNull] SpringLangParser.IdentifierContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SpringParser.number"/>.
+	/// Visit a parse tree produced by <see cref="SpringLangParser.number"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -382,5 +382,5 @@ public partial class SpringBaseVisitor<Result> : AbstractParseTreeVisitor<Result
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNumber([NotNull] SpringParser.NumberContext context) { return VisitChildren(context); }
+	public virtual Result VisitNumber([NotNull] SpringLangParser.NumberContext context) { return VisitChildren(context); }
 }

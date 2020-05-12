@@ -1,4 +1,4 @@
-grammar Spring;
+grammar SpringLang;
 
 program
     : (funDef)* block EOF
@@ -6,7 +6,7 @@ program
     ;
 
 funDef
-    : FUN identifier LPAR functionParameterList? RPAR (localVariables)? blockWithBraces
+    : FUN identifierDecl LPAR functionParameterList? RPAR (localVariables)? blockWithBraces
     ;
 
 localVariables
@@ -14,11 +14,15 @@ localVariables
     ;
 
 localVariableList
-    : identifier (COMMA identifier)*
+    : identifierDecl (COMMA identifierDecl)*
+    ;
+
+identifierDecl
+    : IDENT 
     ;
 
 functionParameterList
-    : identifier (COMMA identifier)*
+    : identifierDecl (COMMA identifierDecl)*
     ;
 
 block
@@ -76,8 +80,8 @@ caseListElement
 
 casePattern
     : WILDCARD
-    | identifier
-    | tag (casePatternList)?
+    | identifierDecl
+    | TAG (casePatternList)?
     ;
 
 casePatternList
@@ -143,7 +147,7 @@ expressionList
     : expression (COMMA expression)*;
 
 sExpr
-    : tag (LPAR expressionList RPAR)?
+    : TAG (LPAR expressionList RPAR)?
     ;
 
 array
@@ -153,8 +157,8 @@ array
 arrayElementList
     : expression (COMMA expression)*
     ;
-tag
-    : TIC identifier
+TAG
+    : TIC IDENT 
     ;
 
 identifier
