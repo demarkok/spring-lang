@@ -6,7 +6,7 @@ program
     ;
 
 funDef
-    : FUN identifierDecl LPAR functionParameterList? RPAR (localVariables)? blockWithBraces
+    : FUN functionIdentifierDecl LPAR functionParameterList? RPAR (localVariables)? blockWithBraces
     ;
 
 localVariables
@@ -140,7 +140,7 @@ expression
     
 
 functionCall
-    : identifier LPAR expressionList RPAR
+    : functionIdentifier LPAR expressionList RPAR
     ;
 
 expressionList
@@ -167,6 +167,14 @@ identifier
 
 number
     : DECIMAL
+    ;
+    
+functionIdentifier
+    : IDENT
+    ;
+
+functionIdentifierDecl
+    : IDENT
     ;
 
 IF : 'if';

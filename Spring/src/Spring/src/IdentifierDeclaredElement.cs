@@ -8,8 +8,8 @@ namespace JetBrains.ReSharper.Plugins.Spring
 {
     public class IdentifierDeclaredElement : IDeclaredElement
     {
-        private Spring_IdentifierDecl _identifierDecl;
-        public IdentifierDeclaredElement(Spring_IdentifierDecl identifierDecl)
+        private readonly SpringDeclaration _identifierDecl;
+        public IdentifierDeclaredElement(SpringDeclaration identifierDecl)
         {
             _identifierDecl = identifierDecl;
         }

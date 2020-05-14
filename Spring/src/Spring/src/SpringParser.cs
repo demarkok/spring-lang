@@ -280,6 +280,17 @@ namespace JetBrains.ReSharper.Plugins.Spring
                 return _Visit(context);
             }
 
+            public override Unit VisitFunctionIdentifier(SpringLangParser.FunctionIdentifierContext context)
+            {
+                return _Visit(context);
+            }
+
+            public override Unit VisitFunctionIdentifierDecl(SpringLangParser.FunctionIdentifierDeclContext context)
+            {
+                return _Visit(context);
+            }
+
+
             public override Unit VisitTerminal(ITerminalNode node)
             {
                 MaxTokenIndexConsumed = Math.Max(node.Symbol.TokenIndex, MaxTokenIndexConsumed);
@@ -319,14 +330,14 @@ namespace JetBrains.ReSharper.Plugins.Spring
                         highlightings.Add(new HighlightingInfo(range, new CSharpSyntaxError(error.ErrorDescription, range)));
                     }
 
-                    if (treeNode is Spring_Identifier id)
+                    if (treeNode is Spring_FunctionIdentifier id)
                     {
                         foreach (var reference in id.GetFirstClassReferences())
                         {
-                            if (!reference.Resolve().Info.ResolveErrorType.IsAcceptable)
+                            if (!reference.Resolve().Info.ResolveErrorType.IsAcceptable && !SpringLanguage.BuiltinNames.Contains(id.GetText()))
                             {
                                 var range = id.GetDocumentRange();
-                                highlightings.Add(new HighlightingInfo(range, new CSharpSyntaxError("??", range)));
+                                highlightings.Add(new HighlightingInfo(range, new CSharpSyntaxError("Unresolved function name", range)));
                                 
                             }
                             

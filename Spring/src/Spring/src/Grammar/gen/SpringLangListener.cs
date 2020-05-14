@@ -380,4 +380,24 @@ public interface ISpringLangListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitNumber([NotNull] SpringLangParser.NumberContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SpringLangParser.functionIdentifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFunctionIdentifier([NotNull] SpringLangParser.FunctionIdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SpringLangParser.functionIdentifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFunctionIdentifier([NotNull] SpringLangParser.FunctionIdentifierContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SpringLangParser.functionIdentifierDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterFunctionIdentifierDecl([NotNull] SpringLangParser.FunctionIdentifierDeclContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SpringLangParser.functionIdentifierDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitFunctionIdentifierDecl([NotNull] SpringLangParser.FunctionIdentifierDeclContext context);
 }

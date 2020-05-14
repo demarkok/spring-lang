@@ -64,6 +64,8 @@ namespace JetBrains.ReSharper.Plugins.Spring
         public static readonly SpringCompositeNodeType ARRAY_ELEMENT_LIST = new SpringCompositeNodeType("ARRAY_ELEMENT_LIST", 32);
         public static readonly SpringCompositeNodeType IDENTIFIER = new SpringCompositeNodeType("IDENTIFIER", 33);
         public static readonly SpringCompositeNodeType NUMBER = new SpringCompositeNodeType("NUMBER", 34);
+        public static readonly SpringCompositeNodeType FUNCTION_IDENTIFIER = new SpringCompositeNodeType("FUNCTION_IDENTIFIER", 35);
+        public static readonly SpringCompositeNodeType FUNCTION_IDENTIFIER_DECL = new SpringCompositeNodeType("FUNCTION_IDENTIFIER_DECL", 36);
 
         public static SpringCompositeNodeType FromAntlr(int ruleIndex)
         {
@@ -112,7 +114,9 @@ namespace JetBrains.ReSharper.Plugins.Spring
             if (this == ARRAY_ELEMENT_LIST) return new Spring_ArrayElementList(c);
             if (this == IDENTIFIER) return new Spring_Identifier(c);
             if (this == NUMBER) return new Spring_Number(c);
-            
+            if (this == FUNCTION_IDENTIFIER) return new Spring_FunctionIdentifier(c);
+            if (this == FUNCTION_IDENTIFIER_DECL) return new Spring_FunctionIdentifierDecl(c);
+
             throw new InvalidOperationException();
         }
 

@@ -454,6 +454,30 @@ public partial class SpringLangBaseListener : ISpringLangListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNumber([NotNull] SpringLangParser.NumberContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SpringLangParser.functionIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFunctionIdentifier([NotNull] SpringLangParser.FunctionIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SpringLangParser.functionIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFunctionIdentifier([NotNull] SpringLangParser.FunctionIdentifierContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SpringLangParser.functionIdentifierDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterFunctionIdentifierDecl([NotNull] SpringLangParser.FunctionIdentifierDeclContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SpringLangParser.functionIdentifierDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitFunctionIdentifierDecl([NotNull] SpringLangParser.FunctionIdentifierDeclContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

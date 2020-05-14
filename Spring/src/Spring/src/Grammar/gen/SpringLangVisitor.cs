@@ -241,4 +241,16 @@ public interface ISpringLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitNumber([NotNull] SpringLangParser.NumberContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SpringLangParser.functionIdentifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunctionIdentifier([NotNull] SpringLangParser.FunctionIdentifierContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SpringLangParser.functionIdentifierDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunctionIdentifierDecl([NotNull] SpringLangParser.FunctionIdentifierDeclContext context);
 }

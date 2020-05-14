@@ -18,6 +18,12 @@ namespace JetBrains.ReSharper.Plugins.Spring
 
     public class SpringFile : FileElementBase
     {
+
+        public HashSet<Spring_FunctionIdentifierDecl> DeclaredFunctions()
+        {
+            return new HashSet<Spring_FunctionIdentifierDecl>(this.Descendants().OfType<Spring_FunctionIdentifierDecl>().Collect());
+        }
+        
         private RuleContext _context;
         public SpringFile(RuleContext context)
         {
@@ -40,6 +46,30 @@ namespace JetBrains.ReSharper.Plugins.Spring
 
         public override PsiLanguageType Language => SpringLanguage.Instance;
     }
+
+
+    public abstract class SpringDeclaration : SpringNode, IDeclaration
+    {
+        public void SetName(string name)
+        {
+        }
+
+        public TreeTextRange GetNameRange() => FirstChild.GetTreeTextRange();
+
+        public bool IsSynthetic() => false;
+
+        public IDeclaredElement DeclaredElement { get; set; }
+        public string DeclaredName => _context.GetText();
+        public XmlNode GetXMLDoc(bool inherit) => null;
+
+        protected SpringDeclaration(RuleContext context) : base(context)
+        {
+            DeclaredElement = new IdentifierDeclaredElement(this);
+        }
+
+        
+    }
+    
 
     public interface IDeclaringVariables
     {
@@ -101,24 +131,10 @@ namespace JetBrains.ReSharper.Plugins.Spring
         }
     }
 
-    public class Spring_IdentifierDecl : SpringNode, IDeclaration
+    public class Spring_IdentifierDecl : SpringDeclaration
     {
         public override NodeType NodeType => SpringCompositeNodeType.IDENTIFIER_DECL;
-
-        public XmlNode GetXMLDoc(bool inherit) => null;
-
-        public void SetName(string name)
-        {
-        }
-
-        public TreeTextRange GetNameRange() => FirstChild.GetTreeTextRange();
         
-        public bool IsSynthetic() => false;
-
-        public IDeclaredElement DeclaredElement { get; }
-
-        public string DeclaredName => _context.GetText();
-
         public Spring_IdentifierDecl(RuleContext context) : base(context)
         {
             DeclaredElement = new IdentifierDeclaredElement(this);
@@ -409,6 +425,39 @@ namespace JetBrains.ReSharper.Plugins.Spring
         {
         }
     }
+
+    public class Spring_FunctionIdentifier : SpringNode
+    {
+        public override NodeType NodeType => SpringCompositeNodeType.FUNCTION_IDENTIFIER;
+        
+        public Spring_FunctionIdentifier(RuleContext context) : base(context)
+        {
+        }
+
+
+        public override ReferenceCollection GetFirstClassReferences()
+        {
+            return new ReferenceCollection(new FunctionIdentifierReference(this));
+        }
+    }
+
+
+    public class Spring_FunctionIdentifierDecl : SpringDeclaration 
+    {
+        public override NodeType NodeType => SpringCompositeNodeType.FUNCTION_IDENTIFIER_DECL;
+        
+        public Spring_FunctionIdentifierDecl(RuleContext context) : base(context)
+        {
+        }
+    }
+
 }
     
+
+
+
+        
+
+
+
     

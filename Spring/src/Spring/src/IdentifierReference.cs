@@ -4,6 +4,7 @@ using JetBrains.ReSharper.Psi.CSharp.Impl.CodeStyle.MemberReordering;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Resolve;
 using JetBrains.ReSharper.Psi.Resolve;
 using JetBrains.ReSharper.Psi.Tree;
+using Microsoft.CodeAnalysis.Operations;
 
 namespace JetBrains.ReSharper.Plugins.Spring
 {
@@ -18,8 +19,6 @@ namespace JetBrains.ReSharper.Plugins.Spring
 
         public override ResolveResultWithInfo ResolveWithoutCache()
         {
-            Spring_IdentifierDecl decl = null;
-            
             foreach (var parent in _identifier.PathToRoot())
             {
                 if (parent is IDeclaringVariables declaring)
@@ -28,26 +27,17 @@ namespace JetBrains.ReSharper.Plugins.Spring
                     {
                         if (declaration.DeclaredName == this.GetName())
                         {
-                            decl = declaration;
+                            return new ResolveResultWithInfo(new SimpleResolveResult(declaration.DeclaredElement),
+                                ResolveErrorType.OK);
                         }
                     }
                 }
             }
-
-            var declElem = decl?.DeclaredElement;
             
-            if (declElem == null)
-            {
-                return ResolveResultWithInfo.Unresolved;
-            }
-            
-            return  new ResolveResultWithInfo(new SimpleResolveResult(declElem), ResolveErrorType.OK);
+            return ResolveResultWithInfo.Unresolved;
         }
 
-        public override string GetName()
-        {
-            return _identifier.GetText();
-        }
+        public override string GetName() => _identifier.GetText();
 
         public override ISymbolTable GetReferenceSymbolTable(bool useReferenceName)
         {
