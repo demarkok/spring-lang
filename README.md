@@ -1,3 +1,74 @@
+# Rider plugin for a [fictional programming language](https://github.com/demarkok/compiler)
+
+![](demo.gif)
+
+## Language description
+Language is pretty simple but includes all the basic constructions such as __loops, functions, procedures, arrays, strings, pattern matching__.
+### Syntax example
+
+#### Fibonacci
+```
+fun fib (n) local r {
+  if n <= 1
+  then result := 1
+  else
+    fib (n-1);
+    r := result;
+    fib (n-2);
+    result := result + r
+  fi
+}
+
+n := read();
+
+fib(n);
+write (result)
+```
+
+#### Sum of the list
+```
+fun sum (x) {
+  case x of
+    `nil          -> return 0
+  | `cons (x, tl) -> return x + sum (tl)
+  esac
+}
+
+x := read ();
+
+write (sum (`cons (100, `cons (200, `nil))))
+```
+
+#### Buuble sort
+```
+fun sort (x) local i, j, y, n {
+  n := x.length;
+  
+  if n == 0 then return x fi;
+  
+  for i := 0, i<n, i := i+1 do
+    for j := i+1, j<n, j := j+1 do
+      if x[j] < x[i] then
+         y    := x[i];
+	 x[i] := x[j];
+	 x[j] := y
+      fi
+    od
+  od;
+  
+  return x
+}
+
+n := read ();
+x := [10, 9, 8, 7, 6, 5];
+
+x := sort (x);
+
+for i:=0, i<x.length, i:=i+1 do
+  write (x[i])
+od
+```
+
 ## Building the plugin
 
 ### Requirements
