@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Antlr4.Runtime;
 using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
+using JetBrains.ReSharper.Psi.TreeBuilder;
 
 namespace JetBrains.ReSharper.Plugins.Spring
 {
-    internal class SpringFileNodeType : CompositeNodeType
+    internal class SpringFileNodeType : CompositeNodeWithArgumentType
     {
         public SpringFileNodeType(string s, int index) : base(s, index)
         {
@@ -12,13 +14,18 @@ namespace JetBrains.ReSharper.Plugins.Spring
 
         public static readonly SpringFileNodeType Instance = new SpringFileNodeType("Spring_FILE", 0);
 
+        public override CompositeElement Create(object o)
+        {
+            return new SpringFile((RuleContext) o);
+        }
+        
         public override CompositeElement Create()
         {
-            return new SpringFile();
+            throw new InvalidOperationException("RuleContext is required to construct SpringNode");
         }
     }
 
-    internal class SpringCompositeNodeType : CompositeNodeType
+    internal class SpringCompositeNodeType : CompositeNodeWithArgumentType
     {
         
         private static readonly Dictionary<int, SpringCompositeNodeType> FromAntlrDict = new Dictionary<int, SpringCompositeNodeType>();
@@ -68,44 +75,50 @@ namespace JetBrains.ReSharper.Plugins.Spring
             FromAntlrDict.Add(index, this);
         }
 
-        public override CompositeElement Create()
+        public override CompositeElement Create(object o)
         {
-            if (this == FUN_DEF) return new Spring_FunDef();
-            if (this == LOCAL_VARIABLES) return new Spring_LocalVariables();
-            if (this == LOCAL_VARIABLE_LIST) return new Spring_LocalVariableList();
-            if (this == IDENTIFIER_DECL) return new Spring_IdentifierDecl();
-            if (this == FUNCTION_PARAMETER_LIST) return new Spring_FunctionParameterList();
-            if (this == BLOCK) return new Spring_Block();
-            if (this == BLOCK_WITH_BRACES) return new Spring_BlockWithBraces();
-            if (this == STATEMENT) return new Spring_Statement();
-            if (this == STMT_CALL) return new Spring_StmtCall();
-            if (this == LOOP_BLOCK) return new Spring_LoopBlock();
-            if (this == STMT_FOR) return new Spring_StmtFor();
-            if (this == STMT_WHILE) return new Spring_StmtWhile();
-            if (this == STMT_REPEAT) return new Spring_StmtRepeat();
-            if (this == STMT_CASE) return new Spring_StmtCase();
-            if (this == CASE_LIST) return new Spring_CaseList();
-            if (this == CASE_LIST_ELEMENT) return new Spring_CaseListElement();
-            if (this == CASE_PATTERN) return new Spring_CasePattern();
-            if (this == CASE_PATTERN_LIST) return new Spring_CasePatternList();
-            if (this == STMT_IF) return new Spring_StmtIf();
-            if (this == ELIF_BRANCH) return new Spring_ElifBranch();
-            if (this == ELSE_BRANCH) return new Spring_ElseBranch();
-            if (this == STMT_ASSIGNMENT) return new Spring_StmtAssignment();
-            if (this == ARRAY_INDEX) return new Spring_ArrayIndex();
-            if (this == STMT_RETURN) return new Spring_StmtReturn();
-            if (this == STMT_SKIP) return new Spring_StmtSkip();
-            if (this == ATOM_EXPRESSION) return new Spring_AtomExpression();
-            if (this == EXPRESSION) return new Spring_Expression();
-            if (this == FUNCTION_CALL) return new Spring_FunctionCall();
-            if (this == EXPRESSION_LIST) return new Spring_ExpressionList();
-            if (this == S_EXPR) return new Spring_SExpr();
-            if (this == ARRAY) return new Spring_Array();
-            if (this == ARRAY_ELEMENT_LIST) return new Spring_ArrayElementList();
-            if (this == IDENTIFIER) return new Spring_Identifier();
-            if (this == NUMBER) return new Spring_Number();
+            var c = (RuleContext) o;
+            if (this == FUN_DEF) return new Spring_FunDef(c);
+            if (this == LOCAL_VARIABLES) return new Spring_LocalVariables(c);
+            if (this == LOCAL_VARIABLE_LIST) return new Spring_LocalVariableList(c);
+            if (this == IDENTIFIER_DECL) return new Spring_IdentifierDecl(c);
+            if (this == FUNCTION_PARAMETER_LIST) return new Spring_FunctionParameterList(c);
+            if (this == BLOCK) return new Spring_Block(c);
+            if (this == BLOCK_WITH_BRACES) return new Spring_BlockWithBraces(c);
+            if (this == STATEMENT) return new Spring_Statement(c);
+            if (this == STMT_CALL) return new Spring_StmtCall(c);
+            if (this == LOOP_BLOCK) return new Spring_LoopBlock(c);
+            if (this == STMT_FOR) return new Spring_StmtFor(c);
+            if (this == STMT_WHILE) return new Spring_StmtWhile(c);
+            if (this == STMT_REPEAT) return new Spring_StmtRepeat(c);
+            if (this == STMT_CASE) return new Spring_StmtCase(c);
+            if (this == CASE_LIST) return new Spring_CaseList(c);
+            if (this == CASE_LIST_ELEMENT) return new Spring_CaseListElement(c);
+            if (this == CASE_PATTERN) return new Spring_CasePattern(c);
+            if (this == CASE_PATTERN_LIST) return new Spring_CasePatternList(c);
+            if (this == STMT_IF) return new Spring_StmtIf(c);
+            if (this == ELIF_BRANCH) return new Spring_ElifBranch(c);
+            if (this == ELSE_BRANCH) return new Spring_ElseBranch(c);
+            if (this == STMT_ASSIGNMENT) return new Spring_StmtAssignment(c);
+            if (this == ARRAY_INDEX) return new Spring_ArrayIndex(c);
+            if (this == STMT_RETURN) return new Spring_StmtReturn(c);
+            if (this == STMT_SKIP) return new Spring_StmtSkip(c);
+            if (this == ATOM_EXPRESSION) return new Spring_AtomExpression(c);
+            if (this == EXPRESSION) return new Spring_Expression(c);
+            if (this == FUNCTION_CALL) return new Spring_FunctionCall(c);
+            if (this == EXPRESSION_LIST) return new Spring_ExpressionList(c);
+            if (this == S_EXPR) return new Spring_SExpr(c);
+            if (this == ARRAY) return new Spring_Array(c);
+            if (this == ARRAY_ELEMENT_LIST) return new Spring_ArrayElementList(c);
+            if (this == IDENTIFIER) return new Spring_Identifier(c);
+            if (this == NUMBER) return new Spring_Number(c);
             
             throw new InvalidOperationException();
+        }
+
+        public override CompositeElement Create()
+        {
+            throw new InvalidOperationException("RuleContext is required to construct SpringNode");
         }
     }
 }

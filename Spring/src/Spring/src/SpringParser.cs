@@ -58,7 +58,7 @@ namespace JetBrains.ReSharper.Plugins.Spring
                 var stringBuilder = new StringBuilder();
                 DebugUtil.DumpPsi(new StringWriter(stringBuilder), file);
                 stringBuilder.ToString();
-                
+               
                 return file;
             }
         }
@@ -67,6 +67,7 @@ namespace JetBrains.ReSharper.Plugins.Spring
         {
 
             private PsiBuilder _psiBuilder;
+            private SpringIdentifierScope _scope = new SpringIdentifierScope();
             public BuilderVisitor(PsiBuilder psiBuilder)
             {
                 _psiBuilder = psiBuilder;
@@ -77,10 +78,10 @@ namespace JetBrains.ReSharper.Plugins.Spring
                return _psiBuilder.Mark();
             }
 
-            private void _leave(int lexeme, int marker, NodeType nodeType)
+            private void _leave(int lexeme, int marker, NodeType nodeType, RuleContext context)
             {
                _psiBuilder.ResetCurrentLexeme(lexeme, lexeme);
-               _psiBuilder.Done(marker, nodeType, null);
+               _psiBuilder.Done(marker, nodeType, context);
             }
 
             public override Unit VisitProgram(SpringLangParser.ProgramContext context)
@@ -88,7 +89,7 @@ namespace JetBrains.ReSharper.Plugins.Spring
                 var nodeType = SpringFileNodeType.Instance;
                 var marker = _enter(context.SourceInterval.a);
                 base.VisitChildren(context);
-                _leave(MaxTokenIndexConsumed, marker, nodeType);
+                _leave(MaxTokenIndexConsumed, marker, nodeType, context);
                 return Unit.Instance;
             }
 
@@ -105,7 +106,7 @@ namespace JetBrains.ReSharper.Plugins.Spring
                 var marker = _enter(interval.a);
                 
                 base.VisitChildren(context);
-                _leave(interval.b + 1, marker, nodeType);
+                _leave(interval.b + 1, marker, nodeType, context);
                 return Unit.Instance;
             }
 
@@ -287,30 +288,6 @@ namespace JetBrains.ReSharper.Plugins.Spring
 
             public int MaxTokenIndexConsumed { get; private set; }
         }
-
-        private void ParseBlock(PsiBuilder builder)
-        {
-            while (!builder.Eof())
-            {
-                var tt = builder.GetTokenType();
-                if (tt == SpringTokenType.DO)
-                {
-                    var start = builder.Mark();
-                    builder.AdvanceLexer();
-                    ParseBlock(builder);
-
-                    if (builder.GetTokenType() != SpringTokenType.OD)
-                        builder.Error("Expected 'OD'");
-                    else
-                        builder.AdvanceLexer();
-                    builder.Done(start, SpringCompositeNodeType.BLOCK, null);
-                }
-                else if (tt == SpringTokenType.OD)
-                    return;
-                else builder.AdvanceLexer();
-                
-            }
-        }
     }
 
     [DaemonStage]
@@ -340,6 +317,22 @@ namespace JetBrains.ReSharper.Plugins.Spring
                     {
                         var range = error.GetDocumentRange();
                         highlightings.Add(new HighlightingInfo(range, new CSharpSyntaxError(error.ErrorDescription, range)));
+                    }
+
+                    if (treeNode is Spring_Identifier id)
+                    {
+                        foreach (var reference in id.GetFirstClassReferences())
+                        {
+                            if (!reference.Resolve().Info.ResolveErrorType.IsAcceptable)
+                            {
+                                var range = id.GetDocumentRange();
+                                highlightings.Add(new HighlightingInfo(range, new CSharpSyntaxError("??", range)));
+                                
+                            }
+                            
+                        } 
+                            
+                        
                     }
                 }
                 

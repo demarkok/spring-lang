@@ -183,7 +183,7 @@ ESAC : 'esac';
 REPEAT : 'repeat';
 UNTIL : 'until';
 LOCAL : 'local';
-OF : 'OF';
+OF : 'of';
 LENGTH : 'length';
 RETURN : 'return';
 SKIP_KW : 'skip';

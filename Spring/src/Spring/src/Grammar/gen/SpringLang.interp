@@ -15,7 +15,7 @@ null
 'repeat'
 'until'
 'local'
-'OF'
+'of'
 'length'
 'return'
 'skip'

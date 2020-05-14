@@ -69,7 +69,7 @@ public partial class SpringLangLexer : Lexer {
 	private static readonly string[] _LiteralNames = {
 		null, null, "'if'", "'then'", "'elif'", "'else'", "'fi'", "'for'", "'while'", 
 		"'do'", "'od'", "'case'", "'esac'", "'repeat'", "'until'", "'local'", 
-		"'OF'", "'length'", "'return'", "'skip'", "'fun'", "':='", "'!!'", "'&&'", 
+		"'of'", "'length'", "'return'", "'skip'", "'fun'", "':='", "'!!'", "'&&'", 
 		null, null, null, null, null, null, "'`'", "'.'", "','", "'_'", "'->'", 
 		"';'", "'|'", "'['", "']'", "'('", "')'", "'{'", "'}'"
 	};
@@ -268,7 +268,7 @@ public partial class SpringLangLexer : Lexer {
 		'\a', 'q', '\x2', '\x2', '\xA0', '\xA1', '\a', '\x65', '\x2', '\x2', '\xA1', 
 		'\xA2', '\a', '\x63', '\x2', '\x2', '\xA2', '\xA3', '\a', 'n', '\x2', 
 		'\x2', '\xA3', ' ', '\x3', '\x2', '\x2', '\x2', '\xA4', '\xA5', '\a', 
-		'Q', '\x2', '\x2', '\xA5', '\xA6', '\a', 'H', '\x2', '\x2', '\xA6', '\"', 
+		'q', '\x2', '\x2', '\xA5', '\xA6', '\a', 'h', '\x2', '\x2', '\xA6', '\"', 
 		'\x3', '\x2', '\x2', '\x2', '\xA7', '\xA8', '\a', 'n', '\x2', '\x2', '\xA8', 
 		'\xA9', '\a', 'g', '\x2', '\x2', '\xA9', '\xAA', '\a', 'p', '\x2', '\x2', 
 		'\xAA', '\xAB', '\a', 'i', '\x2', '\x2', '\xAB', '\xAC', '\a', 'v', '\x2', 

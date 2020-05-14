@@ -66,7 +66,7 @@ public partial class SpringLangParser : Parser {
 	private static readonly string[] _LiteralNames = {
 		null, null, "'if'", "'then'", "'elif'", "'else'", "'fi'", "'for'", "'while'", 
 		"'do'", "'od'", "'case'", "'esac'", "'repeat'", "'until'", "'local'", 
-		"'OF'", "'length'", "'return'", "'skip'", "'fun'", "':='", "'!!'", "'&&'", 
+		"'of'", "'length'", "'return'", "'skip'", "'fun'", "':='", "'!!'", "'&&'", 
 		null, null, null, null, null, null, "'`'", "'.'", "','", "'_'", "'->'", 
 		"';'", "'|'", "'['", "']'", "'('", "')'", "'{'", "'}'"
 	};
